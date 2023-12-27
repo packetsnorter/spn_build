@@ -52,6 +52,7 @@ rm -f /etc/ssh/ssh_host_?sa_*
  echo "--packet-filter=\"src host $IPV4 or src host $IPV6 and not icmp6 and not icmp and not ip multicast and not ether broadcast and not ether host ff:ff:ff:ff:ff:ff and not arp and not port 17 and not port 22 and not port 53\"" >> /etc/ntopng/ntopng.conf
  echo "-m=$IPV4/32,$IPV6/128" >> /etc/ntopng/ntopng.conf
  echo "-w=:3000" >> /etc/ntopng/ntopng.conf
+ echo "--ndpi-protocols=/etc/ntopng/custom_protocols.txt" >> /etc/ntopng/ntopng.conf
  service ntopng start
 
  iptables -F
