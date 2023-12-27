@@ -12,3 +12,4 @@ AllowTcpForwarding yes
 Ciphers aes256-ctr
 MACs hmac-sha2-512
 KexAlgorithms ecdh-sha2-nistp521
+Compression no
