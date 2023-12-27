@@ -13,6 +13,6 @@ The script also sets up the following:
   - An unprivilege user w/ and pubic key SSH, SUDOERS, preferred UMASK, and corrected file permissions.
   - Safing SPN Community Node.
 
-## sshd_config:**
+## **sshd_config:**
 
 Replace /etc/ssh/sshd_config with this one for hardened, non-root login SSHD.
