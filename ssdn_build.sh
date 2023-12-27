@@ -84,6 +84,8 @@ rm -f /etc/ssh/ssh_host_?sa_*
  service iptables restart
  service ip6tables restart
 
+ sed -i 's/blocktype = REJECT --reject-with icmp-port-unreachable/blocktype = DROP/g' /etc/fail2ban/action.d/iptables-common.conf
+ sed -i 's/blocktype = REJECT --reject-with icmp6-port-unreachable/blocktype = DROP/g' /etc/fail2ban/action.d/iptables-common.conf
  systemctl enable fail2ban && systemctl start fail2ban
  
  sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/safing/spn/master/tools/install.sh)"
