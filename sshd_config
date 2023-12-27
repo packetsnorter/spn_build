@@ -1,0 +1,14 @@
+MaxAuthTries 3
+ChallengeResponseAuthentication no
+UsePAM yes
+X11Forwarding yes
+PrintMotd no
+AcceptEnv LANG LC_*
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+PasswordAuthentication no 
+AllowUsers user
+PermitRootLogin no
+AllowTcpForwarding yes
+Ciphers aes256-ctr
+MACs hmac-sha2-512
+KexAlgorithms ecdh-sha2-nistp521
