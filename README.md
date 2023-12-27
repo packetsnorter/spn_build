@@ -8,9 +8,9 @@ In addition, it installs NTOPNG so that I can monitor the network traffic to ens
 
 The script also sets up the following:
   - Fail2Ban
-  - IPTables and IP6Tables
+  - IPTables / IP6Tables
   - Crontab for updates and cleanup.
-  - An unprivilege user w/ and pubic key SSH, SUDOERS, preferred UMASK, and corrected file permissions.
+  - An unprivilege user w/ pubic key SSH, SUDOERS, preferred UMASK, and corrected file permissions.
   - Safing SPN Community Node.
 
 ## **sshd_config:**
