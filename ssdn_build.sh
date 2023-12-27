@@ -3,6 +3,11 @@
 ## Need to config gitlab for ability to login without manual process.  Need gitlab "5 Key" in place before grabbing configs.
 ## Fix the IPTABLES issue for the stop of forward traffic from enp3s0 to docker containers.
 
+# Variables:
+ 
+# Change interface name, if needed.
+ IF="enp3s0"
+
 #	Patch it!
  apt update
  
@@ -44,16 +49,16 @@ rm -f /etc/ssh/ssh_host_?sa_*
  echo "# Portmaster" > /etc/ntopng/custom_protocols.txt
  echo "tcp:17@Portmaster=1024" >> /etc/ntopng/custom_protocols.txt
  echo "" >> /etc/ntopng/custom_protocols.txt
- 
- # Change interface name, if needed.
- IF="enp3s0"
- IPV4=$(ifconfig $IF | awk '/inet / { print $2 }' | sed '/127.0/d')
- IPV6=$(ifconfig $IF | awk '/inet6 / { print $2 }' | sed -e '/fe80/d' -e '/::1/d')
  echo "--packet-filter=\"src host $IPV4 or src host $IPV6 and not icmp6 and not icmp and not ip multicast and not ether broadcast and not ether host ff:ff:ff:ff:ff:ff and not arp and not port 17 and not port 22 and not port 53\"" >> /etc/ntopng/ntopng.conf
  echo "-m=$IPV4/32,$IPV6/128" >> /etc/ntopng/ntopng.conf
  echo "-w=:3000" >> /etc/ntopng/ntopng.conf
  echo "--ndpi-protocols=/etc/ntopng/custom_protocols.txt" >> /etc/ntopng/ntopng.conf
+ echo "-i=$IF" >> /etc/ntopng/ntopng.conf
  service ntopng start
+
+ IPV4=$(ifconfig $IF | awk '/inet / { print $2 }' | sed '/127.0/d')
+ IPV6=$(ifconfig $IF | awk '/inet6 / { print $2 }' | sed -e '/fe80/d' -e '/::1/d')
+
 
  iptables -F
  iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
