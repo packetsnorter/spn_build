@@ -13,3 +13,4 @@ Ciphers aes256-ctr
 MACs hmac-sha2-512
 KexAlgorithms ecdh-sha2-nistp521
 Compression no
+HostKey /etc/ssh/ssh_host_ed25519_key
