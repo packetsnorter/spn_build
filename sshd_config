@@ -1,18 +1,22 @@
+# Most recent EC Ciphers selection as of 2024-07-18.
+# Change the AllowUsers before restarting SSHD
+
 MaxAuthTries 3
 ChallengeResponseAuthentication no
 UsePAM yes
-X11Forwarding no
+X11Forwarding yes
 PrintMotd no
 AcceptEnv LANG LC_*
-Subsystem	sftp	/usr/lib/openssh/sftp-server
-PasswordAuthentication no 
-AllowUsers user
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+PasswordAuthentication no
+AllowUsers [[CHANGEME]]
 PermitRootLogin no
 AllowTcpForwarding yes
-Ciphers aes256-ctr
-MACs hmac-sha2-512
-KexAlgorithms ecdh-sha2-nistp521
 Compression no
-HostKey /etc/ssh/ssh_host_ed25519_key
-AllowAgentForwarding no
-KbdInteractiveAuthentication no
+KexAlgorithms sntrup761x25519-sha512@openssh.com
+Ciphers chacha20-poly1305@openssh.com
+MACs hmac-sha2-512-etm@openssh.com
+CASignatureAlgorithms sk-ssh-ed25519@openssh.com,ssh-ed25519
+hostkey /etc/ssh/ssh_host_ed25519_key
+PubkeyAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519
+logingracetime 15
